@@ -1,0 +1,56 @@
+.board {
+  flex-direction: column;
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.board aside {
+  border-right: 1px solid #eee;
+  padding: 15px 10px;
+  font-size: 12px;
+  background: #fcfcfc;
+}
+
+.board aside .description {
+  margin-bottom: 10px;
+}
+
+.board .board {
+  height: 20px;
+  padding: 4px;
+  border: 1px solid #1a192b;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+.board .board.input {
+  border-color: #0041d0;
+}
+
+.board .board.output {
+  border-color: #ff0072;
+}
+
+.board .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.board.transmitter {
+  border-color: #00ff22;
+}
+
+@media screen and (min-width: 768px) {
+  .board {
+    flex-direction: row;
+  }
+
+  .board aside {
+    width: 20%;
+    max-width: 250px;
+  }
+}
