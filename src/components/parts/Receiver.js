@@ -4,20 +4,20 @@ import TextField from "../inputs/TextField";
 export default memo(({ data }) => {
   return (
     <>
+      <Handle type="target" position="left" style={{ background: "#555" }} />
       <div>
-        <b>Transmitter</b>
+        <b>Receiver</b>
       </div>
       <div>
-        Power:
-        <TextField name="power" data={data} />
-        mW, Wavelength:
-        <TextField name="wavelength" data={data} />
+        Sensitivity:
+        <TextField data={data} name="sens" />
+        mw,Wavelength:
+        <TextField data={data} name="wavelength" />
         nm
       </div>
       Insertion loss:
-      <TextField name="loss" data={data} />
+      <TextField data={data} name="loss" />
       dbm
-      <Handle type="source" position="right" style={{ background: "#555" }} />
     </>
   );
 });

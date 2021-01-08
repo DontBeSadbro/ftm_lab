@@ -40,8 +40,18 @@
   height: 100%;
 }
 
-.board.transmitter {
-  border-color: #00ff22;
+.react-flow__node-Transmitter,
+.react-flow__node-Filter,
+.react-flow__node-Amplifier,
+.react-flow__node-Receiver,
+.react-flow__node-AddDropMux,
+.react-flow__node-WaveConverter,
+.react-flow__node-Switch {
+  background: white;
+}
+
+.field {
+  width: 50px;
 }
 
 @media screen and (min-width: 768px) {
