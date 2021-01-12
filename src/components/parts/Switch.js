@@ -16,7 +16,7 @@ export default memo(({ data }) => {
         type="target"
         id="b"
         position="left"
-        style={{ bottom: 10, background: "#555" }}
+        style={{ top: 80, background: "#555" }}
       />
       <div>
         <b>Switch</b>
@@ -54,7 +54,7 @@ export default memo(({ data }) => {
         type="source"
         id="b"
         position="right"
-        style={{ bottom: 10, background: "#555" }}
+        style={{ top: 80, background: "#555" }}
       />
     </>
   );

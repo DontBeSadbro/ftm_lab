@@ -46,7 +46,19 @@
 .react-flow__node-Receiver,
 .react-flow__node-AddDropMux,
 .react-flow__node-WaveConverter,
-.react-flow__node-Switch {
+.react-flow__node-Switch,
+.react-flow__node-Mux2,
+.react-flow__node-Mux4,
+.react-flow__node-Mux8,
+.react-flow__node-Demux2,
+.react-flow__node-Demux4,
+.react-flow__node-Demux8,
+.react-flow__node-Coupler2,
+.react-flow__node-Coupler3,
+.react-flow__node-Coupler4,
+.react-flow__node-Decoupler2,
+.react-flow__node-Decoupler3,
+.react-flow__node-Decoupler4 {
   background: white;
 }
 

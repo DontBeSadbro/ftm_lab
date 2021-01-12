@@ -4,7 +4,7 @@ const TextField = (props) => {
   return (
     <input
       className="field"
-      type="text"
+      type="number"
       defaultValue={props.data[props.name]}
       onChange={onChange}
       onMouseDown={(e) => e.stopPropagation()}

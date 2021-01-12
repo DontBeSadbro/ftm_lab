@@ -1,4 +1,7 @@
 import React from "react";
+import { Collapse } from "antd";
+const { Panel } = Collapse;
+
 const Sidebar = () => {
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
@@ -8,27 +11,6 @@ const Sidebar = () => {
     <aside>
       <div className="description">
         You can drag these nodes to the pane on the right.
-      </div>
-      <div
-        className="board input"
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        Input Node
-      </div>
-      <div
-        className="board"
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        Default Node
-      </div>
-      <div
-        className="board output"
-        onDragStart={(event) => onDragStart(event, "output")}
-        draggable
-      >
-        Output Node
       </div>
       <div
         className="board transmitter"
@@ -79,6 +61,100 @@ const Sidebar = () => {
       >
         Switch
       </div>
+      <Collapse accordion>
+        <Panel header="Mux" key="1">
+          <div
+            className="board mux2"
+            onDragStart={(event) => onDragStart(event, "Mux2")}
+            draggable
+          >
+            Mux2
+          </div>
+          <div
+            className="board mux4"
+            onDragStart={(event) => onDragStart(event, "Mux4")}
+            draggable
+          >
+            Mux4
+          </div>
+          <div
+            className="board mux8"
+            onDragStart={(event) => onDragStart(event, "Mux8")}
+            draggable
+          >
+            Mux8
+          </div>
+        </Panel>
+        <Panel header="Demux" key="2">
+          <div
+            className="board demux2"
+            onDragStart={(event) => onDragStart(event, "Demux2")}
+            draggable
+          >
+            Demux2
+          </div>
+          <div
+            className="board demux4"
+            onDragStart={(event) => onDragStart(event, "Demux4")}
+            draggable
+          >
+            Demux4
+          </div>
+          <div
+            className="board demux8"
+            onDragStart={(event) => onDragStart(event, "Demux8")}
+            draggable
+          >
+            Demux8
+          </div>
+        </Panel>
+        <Panel header="Coupler" key="3">
+          <div
+            className="board coupler2"
+            onDragStart={(event) => onDragStart(event, "Coupler2")}
+            draggable
+          >
+            Coupler2
+          </div>
+          <div
+            className="board coupler3"
+            onDragStart={(event) => onDragStart(event, "Coupler3")}
+            draggable
+          >
+            Coupler3
+          </div>
+          <div
+            className="board coupler4"
+            onDragStart={(event) => onDragStart(event, "Coupler4")}
+            draggable
+          >
+            Coupler4
+          </div>
+        </Panel>
+        <Panel header="Decoupler" key="4">
+          <div
+            className="board decoupler2"
+            onDragStart={(event) => onDragStart(event, "Decoupler2")}
+            draggable
+          >
+            Decoupler2
+          </div>
+          <div
+            className="board decoupler3"
+            onDragStart={(event) => onDragStart(event, "Decoupler3")}
+            draggable
+          >
+            Decoupler3
+          </div>
+          <div
+            className="board decoupler4"
+            onDragStart={(event) => onDragStart(event, "Decoupler4")}
+            draggable
+          >
+            Decoupler4
+          </div>
+        </Panel>
+      </Collapse>
     </aside>
   );
 };

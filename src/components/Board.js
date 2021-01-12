@@ -17,6 +17,18 @@ import Receiver from "./parts/Receiver";
 import AddDropMux from "./parts/AddDropMux";
 import WaveConverter from "./parts/WaveConverter";
 import Switch from "./parts/Switch";
+import Mux2 from "./parts/Mux2";
+import Mux4 from "./parts/Mux4";
+import Mux8 from "./parts/Mux8";
+import Demux2 from "./parts/Demux2";
+import Demux4 from "./parts/Demux4";
+import Demux8 from "./parts/Demux8";
+import Coupler2 from "./parts/Coupler2";
+import Coupler3 from "./parts/Coupler3";
+import Coupler4 from "./parts/Coupler4";
+import Decoupler2 from "./parts/Decoupler2";
+import Decoupler3 from "./parts/Decoupler3";
+import Decoupler4 from "./parts/Decoupler4";
 
 const nodeTypes = {
   Transmitter: Transmitter,
@@ -26,6 +38,18 @@ const nodeTypes = {
   AddDropMux: AddDropMux,
   WaveConverter: WaveConverter,
   Switch: Switch,
+  Mux2: Mux2,
+  Mux4: Mux4,
+  Mux8: Mux8,
+  Demux2: Demux2,
+  Demux4: Demux4,
+  Demux8: Demux8,
+  Coupler2: Coupler2,
+  Coupler3: Coupler3,
+  Coupler4: Coupler4,
+  Decoupler2: Decoupler2,
+  Decoupler3: Decoupler3,
+  Decoupler4: Decoupler4,
 };
 
 const getDataForType = (type) => {
@@ -44,6 +68,23 @@ const getDataForType = (type) => {
       return { inWL: 1250, outWL: 1550, loss: 1 };
     case "Switch":
       return { rules: [0, 1], loss: 1 };
+    case "Mux2":
+    case "Mux4":
+    case "Mux8":
+    case "Coupler2":
+    case "Coupler3":
+    case "Coupler4":
+      return { loss: 1 };
+    case "Demux2":
+    case "Decoupler2":
+      return { loss: 1, outputNum: 2 };
+    case "Decoupler3":
+      return { loss: 1, outputNum: 3 };
+    case "Demux4":
+    case "Decoupler4":
+      return { loss: 1, outputNum: 4 };
+    case "Demux8":
+      return { loss: 1, outputNum: 8 };
     default:
       return {};
   }
@@ -63,6 +104,19 @@ const getStyleForType = (type) => {
     case "WaveConverter":
       return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Switch":
+      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
+    case "Mux2":
+    case "Mux4":
+    case "Mux8":
+    case "Demux2":
+    case "Demux4":
+    case "Demux8":
+    case "Coupler2":
+    case "Coupler3":
+    case "Coupler4":
+    case "Decoupler2":
+    case "Decoupler3":
+    case "Decoupler4":
       return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     default:
       return undefined;
