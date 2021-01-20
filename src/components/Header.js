@@ -108,7 +108,8 @@ const calculate = (setElements, elements) => {
 
   /*
   fetch("http://localhost:5000/calculate", {
-    method: "GET",
+    method: "POST",
+    body: sendingJSON
   }).then((response) => {
     if (response.status === 200) {
       console.log("Super");
@@ -120,7 +121,8 @@ const calculate = (setElements, elements) => {
   */
   /*
   fetch("http://localhost:5000/calculate", {
-    method: "GET",
+    method: "POST",
+    body: sendingJSON
   }).then((response) => response.json()).then((response) => {
     if (response.status === 200) {
       console.log("Super");
