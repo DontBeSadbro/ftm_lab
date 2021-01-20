@@ -13,49 +13,49 @@ export default memo(({ data }) => {
       dbm
       <Handle
         type="source"
-        id="a"
+        id="0"
         position="right"
         style={{ top: 5, background: "#555" }}
       />
       <Handle
         type="source"
-        id="b"
+        id="1"
         position="right"
         style={{ top: 13, background: "#555" }}
       />
       <Handle
         type="source"
-        id="c"
+        id="2"
         position="right"
         style={{ top: 22, background: "#555" }}
       />
       <Handle
         type="source"
-        id="d"
+        id="3"
         position="right"
         style={{ top: 30, background: "#555" }}
       />
       <Handle
         type="source"
-        id="e"
+        id="4"
         position="right"
         style={{ top: 39, background: "#555" }}
       />
       <Handle
         type="source"
-        id="f"
+        id="5"
         position="right"
         style={{ top: 47, background: "#555" }}
       />
       <Handle
         type="source"
-        id="g"
+        id="6"
         position="right"
         style={{ top: 56, background: "#555" }}
       />
       <Handle
         type="source"
-        id="h"
+        id="7"
         position="right"
         style={{ top: 65, background: "#555" }}
       />

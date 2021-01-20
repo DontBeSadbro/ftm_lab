@@ -8,13 +8,13 @@ export default memo(({ data }) => {
     <>
       <Handle
         type="target"
-        id="a"
+        id="0"
         position="left"
         style={{ top: 10, background: "#555" }}
       />
       <Handle
         type="target"
-        id="b"
+        id="1"
         position="left"
         style={{ top: 80, background: "#555" }}
       />
@@ -46,13 +46,13 @@ export default memo(({ data }) => {
       dbm
       <Handle
         type="source"
-        id="a"
+        id="0"
         position="right"
         style={{ top: 10, background: "#555" }}
       />
       <Handle
         type="source"
-        id="b"
+        id="1"
         position="right"
         style={{ top: 80, background: "#555" }}
       />

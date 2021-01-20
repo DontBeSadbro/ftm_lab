@@ -6,49 +6,49 @@ export default memo(({ data }) => {
     <>
       <Handle
         type="target"
-        id="a"
+        id="0"
         position="left"
         style={{ top: 5, background: "#555" }}
       />
       <Handle
         type="target"
-        id="b"
+        id="1"
         position="left"
         style={{ top: 13, background: "#555" }}
       />
       <Handle
         type="target"
-        id="c"
+        id="2"
         position="left"
         style={{ top: 22, background: "#555" }}
       />
       <Handle
         type="target"
-        id="d"
+        id="3"
         position="left"
         style={{ top: 30, background: "#555" }}
       />
       <Handle
         type="target"
-        id="e"
+        id="4"
         position="left"
         style={{ top: 39, background: "#555" }}
       />
       <Handle
         type="target"
-        id="f"
+        id="5"
         position="left"
         style={{ top: 47, background: "#555" }}
       />
       <Handle
         type="target"
-        id="g"
+        id="6"
         position="left"
         style={{ top: 56, background: "#555" }}
       />
       <Handle
         type="target"
-        id="h"
+        id="7"
         position="left"
         style={{ top: 65, background: "#555" }}
       />

@@ -36,6 +36,7 @@ const load = (setElements, resetId) => {
 
 const calculate = (setElements, elements) => {
   const helperArray = elements.map((e) => {
+    console.log(e.type);
     if (isEdge(e)) {
       return {
         ...e,
@@ -44,10 +45,43 @@ const calculate = (setElements, elements) => {
         insertionLoss: 0.05,
         type: "Fiber",
       };
+    } else if (
+      e.type === "Demux2" ||
+      e.type === "Demux4" ||
+      e.type === "Demux8"
+    ) {
+      return {
+        ...e,
+        type: "Demux",
+      };
+    } else if (e.type === "Mux2" || e.type === "Mux4" || e.type === "Mux8") {
+      return {
+        ...e,
+        type: "Mux",
+      };
+    } else if (
+      e.type === "Coupler2" ||
+      e.type === "Coupler3" ||
+      e.type === "Coupler4"
+    ) {
+      return {
+        ...e,
+        type: "Coupler",
+      };
+    } else if (
+      e.type === "Decoupler2" ||
+      e.type === "Decoupler3" ||
+      e.type === "Decoupler4"
+    ) {
+      return {
+        ...e,
+        type: "Decoupler",
+      };
     } else {
       return { ...e };
     }
   });
+  console.log("Test: ", helperArray);
   for (const line of helperArray.filter((e) => isEdge(e))) {
     const el = helperArray.find((e) => e.id === line.target);
     if (el.source === undefined) el.source = [];

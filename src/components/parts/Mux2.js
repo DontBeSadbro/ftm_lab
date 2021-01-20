@@ -6,13 +6,13 @@ export default memo(({ data }) => {
     <>
       <Handle
         type="target"
-        id="a"
+        id="0"
         position="left"
         style={{ top: 10, background: "#555" }}
       />
       <Handle
         type="target"
-        id="b"
+        id="1"
         position="left"
         style={{ top: 60, background: "#555" }}
       />
