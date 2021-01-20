@@ -1,4 +1,5 @@
 import React from "react";
+import { isEdge } from "react-flow-renderer";
 import "../css/Header.css";
 import { Button } from "antd";
 import fileDialog from "file-dialog";
@@ -33,11 +34,112 @@ const load = (setElements, resetId) => {
   });
 };
 
+const calculate = (setElements, elements) => {
+  const helperArray = elements.map((e) => {
+    if (isEdge(e)) {
+      return {
+        ...e,
+        length: 10,
+        alfa: 0.1,
+        insertionLoss: 0.05,
+        type: "Fiber",
+      };
+    } else {
+      return { ...e };
+    }
+  });
+  for (const line of helperArray.filter((e) => isEdge(e))) {
+    const el = helperArray.find((e) => e.id === line.target);
+    if (el.source === undefined) el.source = [];
+    el.source.push(line.id);
+  }
+  console.log(helperArray);
+  const sendingObj = {
+    AddDropMux: [],
+    Amplifier: [],
+    Coupler: [],
+    Decoupler: [],
+    Demux: [],
+    Fiber: [],
+    Filter: [],
+    Mux: [],
+    Receiver: [],
+    Switch: [],
+    Transmitter: [],
+    WaveConverter: [],
+  };
+  for (const e of helperArray) {
+    console.log(e);
+    sendingObj[e.type].push(e);
+  }
+  const sendingJSON = JSON.stringify(sendingObj);
+  console.log(sendingJSON);
+
+  /*
+  fetch("http://localhost:5000/calculate", {
+    method: "GET",
+  }).then((response) => {
+    if (response.status === 200) {
+      console.log("Super");
+    } else {
+      console.log(response);
+      alert("Error");
+    }
+  });
+  */
+  /*
+  fetch("http://localhost:5000/calculate", {
+    method: "GET",
+  }).then((response) => response.json()).then((response) => {
+    if (response.status === 200) {
+      console.log("Super");
+    } else {
+      console.log(response);
+      alert("Error");
+    }
+  });
+  */
+
+  const receivedJSON =
+    '{"Receiver": [{"Receiver_0": {"outPower": "10", "outWave": "1550"}}, {"Receiver_1": {"outPower": "0", "outWave": "0"}}]}';
+  const receivedArray = JSON.parse(receivedJSON);
+
+  var outputText = "";
+
+  for (const receiver of receivedArray.Receiver) {
+    setElements((els) =>
+      els.map((e) => {
+        if (receiver[e.id]) {
+          e.outPower = receiver[e.id].outPower;
+          e.outWave = receiver[e.id].outWave;
+        }
+        return e;
+      })
+    );
+  }
+  for (var receiver of receivedArray.Receiver) {
+    const listKeys = Object.keys(receiver);
+    outputText =
+      outputText +
+      listKeys +
+      " has " +
+      receiver[listKeys].outPower +
+      " mw and " +
+      receiver[listKeys].outWave +
+      "nm\n";
+  }
+  alert(outputText);
+};
+
 export default function Header({ elements, setElements, resetId }) {
   return (
     <header className="Header">
       <div className="Header-btns">
-        <Button className="button" type="primary">
+        <Button
+          className="button"
+          type="primary"
+          onClick={() => calculate(setElements, elements)}
+        >
           Calculate
         </Button>
         <Button

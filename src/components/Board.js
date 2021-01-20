@@ -61,7 +61,13 @@ const getDataForType = (type) => {
     case "Amplifier":
       return { amp: 2, maxPower: 500, minWL: 1200, maxWL: 1600, loss: 1 };
     case "Receiver":
-      return { sens: 10, wavelength: 1450, loss: 1 };
+      return {
+        sens: 10,
+        wavelength: 1450,
+        loss: 1,
+        outPower: undefined,
+        outWave: undefined,
+      };
     case "AddDropMux":
       return { addWL: 1350, delWL: 1550, power: 1000, loss: 1 };
     case "WaveConverter":
