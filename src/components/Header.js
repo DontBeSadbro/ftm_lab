@@ -36,7 +36,6 @@ const load = (setElements, resetId) => {
 
 const calculate = (setElements, elements) => {
   const helperArray = elements.map((e) => {
-    console.log(e.type);
     if (isEdge(e)) {
       return {
         ...e,
@@ -81,7 +80,6 @@ const calculate = (setElements, elements) => {
       return { ...e };
     }
   });
-  console.log("Test: ", helperArray);
   for (const line of helperArray.filter((e) => isEdge(e))) {
     const el = helperArray.find((e) => e.id === line.target);
     if (el.source === undefined) el.source = [];
@@ -103,7 +101,6 @@ const calculate = (setElements, elements) => {
     WaveConverter: [],
   };
   for (const e of helperArray) {
-    console.log(e);
     sendingObj[e.type].push(e);
   }
   const sendingJSON = JSON.stringify(sendingObj);
