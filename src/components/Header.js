@@ -140,50 +140,49 @@ const calculate = (setElements, elements) => {
   */
 
   const receivedJSON =
-    '{"Receiver": [{"Receiver_0": {"outPower": "10", "outWave": "1550"}}, {"Receiver_1": {"outPower": "0", "outWave": "0"}}]}';
+    '{"Receiver": [{"Receiver_0": "10"}, {"Receiver_1": "0"}]}';
   const receivedArray = JSON.parse(receivedJSON);
-
-  var outputText = "";
 
   for (const receiver of receivedArray.Receiver) {
     setElements((els) =>
       els.map((e) => {
         if (receiver[e.id]) {
-          e.data.outPower = receiver[e.id].outPower;
-          e.data.outWave = receiver[e.id].outWave;
+          e.data.outPower = receiver[e.id];
         }
         return e;
       })
     );
   }
-  for (var receiver of receivedArray.Receiver) {
-    const listKeys = Object.keys(receiver);
-    outputText =
-      outputText +
-      listKeys +
-      " has " +
-      receiver[listKeys].outPower +
-      " mw and " +
-      receiver[listKeys].outWave +
-      "nm\n";
-  }
-  alert(outputText);
 };
 
 export default function Header({ elements, setElements, resetId }) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModal1Visible, setIsModal1Visible] = useState(false);
+  const [isModal2Visible, setIsModal2Visible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
+  const showModal1 = () => {
+    setIsModal1Visible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const handle1Ok = () => {
+    setIsModal1Visible(false);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const handle1Cancel = () => {
+    setIsModal1Visible(false);
   };
+
+  const showModal2 = () => {
+    setIsModal2Visible(true);
+  };
+
+  const handle2Ok = () => {
+    setIsModal2Visible(false);
+  };
+
+  const handle2Cancel = () => {
+    setIsModal2Visible(false);
+  };
+
   return (
     <>
       <header className="Header">
@@ -219,7 +218,11 @@ export default function Header({ elements, setElements, resetId }) {
           >
             Clear
           </Button>
-          <Button className="button" type="primary">
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => showModal2()}
+          >
             Help
           </Button>
           <Button
@@ -229,16 +232,54 @@ export default function Header({ elements, setElements, resetId }) {
           >
             Check
           </Button>
-          <Button className="button" type="primary" onClick={() => showModal()}>
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => showModal1()}
+          >
             Change fiber value
           </Button>
         </div>
       </header>
       <Modal
+        title="Help"
+        style={{ top: 20 }}
+        visible={isModal2Visible}
+        onOk={handle2Ok}
+        onCancel={handle2Cancel}
+        width={720}
+      >
+        To add components to the network, drag and drop the wanted component
+        from the sidebar to the board.
+        <br />
+        <br /> You can connect 2 components by clinking on a dot on a side of a
+        component, holding the mouse button, and dragging it to a dot on a
+        another component.
+        <br />
+        <br /> The button Calculate will use the made network to check if the
+        receivers are working properly. In that case, they will have a green
+        border and text that says what is their power for their set wavelength,
+        otherwise the border will be red.
+        <br />
+        <br /> With the button Save, you can save the network in a .txt file,
+        while the Load button can load .txt files
+        <br />
+        <br />
+        The button Clear clears the board of all components. <br />
+        <br />
+        The button Help shows this text.
+        <br />
+        <br /> Check button is used for debugging purposes. <br />
+        <br />
+        Change fiber value is used to bring a modal where you can change fiber
+        properties
+      </Modal>
+
+      <Modal
         title="Change fiber value"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        visible={isModal1Visible}
+        onOk={handle1Ok}
+        onCancel={handle1Cancel}
       >
         <div id="fibermodal">
           <Input

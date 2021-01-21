@@ -41,7 +41,7 @@ export default memo(({ data }) => {
         <TextField data={data} name="loss" />
         dbm
       </div>
-      <Output outpower={data.outPower} outwave={data.outWave} />
+      <Output outpower={data.outPower} outwave={data.wavelength} />
     </>
   );
 });
