@@ -3,7 +3,6 @@ import { Handle } from "react-flow-renderer";
 import TextField from "../inputs/TextField";
 export default memo(({ data }) => {
   const onChange = data?.onChange?.bind(null, data.id);
-  //console.log(data.rules);
   return (
     <>
       <Handle

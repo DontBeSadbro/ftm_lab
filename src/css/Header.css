@@ -9,7 +9,6 @@
   background-size: auto;
   background-repeat: no-repeat;
   height: 60px;
-  /*opacity: 0.7;*/
   margin-bottom: 10px;
 }
 
@@ -21,4 +20,12 @@
   text-decoration: inherit;
   text-transform: uppercase;
   outline: none;
+}
+
+#fibermodal {
+  display: "flex";
+  flex-direction: "column";
+}
+#fibermodal > * {
+  margin-top: 5px;
 }

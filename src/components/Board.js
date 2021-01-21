@@ -30,6 +30,7 @@ import Decoupler2 from "./parts/Decoupler2";
 import Decoupler3 from "./parts/Decoupler3";
 import Decoupler4 from "./parts/Decoupler4";
 
+//#region [ Node Types ]
 const nodeTypes = {
   Transmitter: Transmitter,
   Filter: Filter,
@@ -98,19 +99,12 @@ const getDataForType = (type) => {
 const getStyleForType = (type) => {
   switch (type) {
     case "Transmitter":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Filter":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Amplifier":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Receiver":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "AddDropMux":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "WaveConverter":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Switch":
-      return { border: "2px solid black", borderRadius: "5px", padding: 10 };
     case "Mux2":
     case "Mux4":
     case "Mux8":
@@ -128,6 +122,7 @@ const getStyleForType = (type) => {
       return undefined;
   }
 };
+//#endregion
 
 const Board = ({ elements, setElements, getId }) => {
   const reactFlowWrapper = useRef(null);
@@ -136,15 +131,15 @@ const Board = ({ elements, setElements, getId }) => {
   const onElementsRemove = (elementsToRemove) => {
     setElements((els) => removeElements(elementsToRemove, els));
   };
+
   const onLoad = (_reactFlowInstance) =>
     setReactFlowInstance(_reactFlowInstance);
+
   const onDragOver = (event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   };
-  const onElementClick = (event, e) => {
-    console.log(e);
-  };
+
   const onChange = useCallback(
     (id, event) => {
       setElements((els) =>
@@ -197,6 +192,7 @@ const Board = ({ elements, setElements, getId }) => {
     };
     setElements((es) => es.concat(newNode));
   };
+
   return (
     <div className="board">
       <ReactFlowProvider>
@@ -217,7 +213,6 @@ const Board = ({ elements, setElements, getId }) => {
             onLoad={onLoad}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            onElementClick={onElementClick}
             onNodeDragStop={onNodeDragStop}
             nodeTypes={nodeTypes}
           >

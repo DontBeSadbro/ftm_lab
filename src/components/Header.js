@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { isEdge } from "react-flow-renderer";
 import "../css/Header.css";
-import { Button } from "antd";
+import { Button, Modal, Input } from "antd";
 import fileDialog from "file-dialog";
 
 const save = (elements) => {
@@ -11,8 +11,10 @@ const save = (elements) => {
   const url = window.URL.createObjectURL(oMyBlob);
   a.href = url;
   const fileName = prompt("File name?", "default");
-  a.download = fileName + ".txt";
-  a.click();
+  if (fileName) {
+    a.download = fileName + ".txt";
+    a.click();
+  }
 };
 
 const load = (setElements, resetId) => {
@@ -34,14 +36,18 @@ const load = (setElements, resetId) => {
   });
 };
 
+const defaultValues = {
+  length: 10,
+  alfa: 0.1,
+  insertionLoss: 0.05,
+};
+
 const calculate = (setElements, elements) => {
   const helperArray = elements.map((e) => {
     if (isEdge(e)) {
       return {
         ...e,
-        length: 10,
-        alfa: 0.1,
-        insertionLoss: 0.05,
+        ...defaultValues,
         type: "Fiber",
       };
     } else if (
@@ -143,8 +149,8 @@ const calculate = (setElements, elements) => {
     setElements((els) =>
       els.map((e) => {
         if (receiver[e.id]) {
-          e.outPower = receiver[e.id].outPower;
-          e.outWave = receiver[e.id].outWave;
+          e.data.outPower = receiver[e.id].outPower;
+          e.data.outWave = receiver[e.id].outWave;
         }
         return e;
       })
@@ -165,51 +171,96 @@ const calculate = (setElements, elements) => {
 };
 
 export default function Header({ elements, setElements, resetId }) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
-    <header className="Header">
-      <div className="Header-btns">
-        <Button
-          className="button"
-          type="primary"
-          onClick={() => calculate(setElements, elements)}
-        >
-          Calculate
-        </Button>
-        <Button
-          className="button"
-          type="primary"
-          onClick={() => save(elements)}
-        >
-          Save
-        </Button>
-        <Button
-          className="button"
-          type="primary"
-          onClick={() => load(setElements, resetId)}
-        >
-          Load
-        </Button>
-        <Button
-          className="button"
-          type="primary"
-          onClick={() => {
-            setElements([]);
-            resetId(0);
-          }}
-        >
-          Clear
-        </Button>
-        <Button className="button" type="primary">
-          Help
-        </Button>
-        <Button
-          className="button"
-          type="primary"
-          onClick={() => console.log(elements)}
-        >
-          Check
-        </Button>
-      </div>
-    </header>
+    <>
+      <header className="Header">
+        <div className="Header-btns">
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => calculate(setElements, elements)}
+          >
+            Calculate
+          </Button>
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => save(elements)}
+          >
+            Save
+          </Button>
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => load(setElements, resetId)}
+          >
+            Load
+          </Button>
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => {
+              setElements([]);
+              resetId(0);
+            }}
+          >
+            Clear
+          </Button>
+          <Button className="button" type="primary">
+            Help
+          </Button>
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => console.log(elements)}
+          >
+            Check
+          </Button>
+          <Button className="button" type="primary" onClick={() => showModal()}>
+            Change fiber value
+          </Button>
+        </div>
+      </header>
+      <Modal
+        title="Change fiber value"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div id="fibermodal">
+          <Input
+            type="number"
+            addonBefore="Length"
+            defaultValue={defaultValues.length}
+            onChange={(e) => (defaultValues.length = e.target.value)}
+          />
+          <Input
+            type="number"
+            addonBefore="Alfa"
+            defaultValue={defaultValues.alfa}
+            onChange={(e) => (defaultValues.alfa = e.target.value)}
+          />
+          <Input
+            type="number"
+            addonBefore="Insertion Loss"
+            defaultValue={defaultValues.insertionLoss}
+            onChange={(e) => (defaultValues.insertionLoss = e.target.value)}
+          />
+        </div>
+      </Modal>
+    </>
   );
 }
