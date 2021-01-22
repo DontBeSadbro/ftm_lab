@@ -13,6 +13,7 @@ export default memo(({ data }) => {
         <TextField name="amp" data={data} />
         dbm, Max. power:
         <TextField name="maxPower" data={data} />
+        nm
       </div>
       <div>
         Min. wavelength:

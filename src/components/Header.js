@@ -109,38 +109,38 @@ const calculate = (setElements, elements) => {
   for (const e of helperArray) {
     sendingObj[e.type].push(e);
   }
+
+  //const sendingJSON = '{"id": "Receiver_3","type": "Receiver"}';
   const sendingJSON = JSON.stringify(sendingObj);
+
   console.log(sendingJSON);
 
-  /*
-  fetch("http://localhost:5000/calculate", {
+  fetch("http://localhost:8080/calculate2/", {
     method: "POST",
-    body: sendingJSON
-  }).then((response) => {
-    if (response.status === 200) {
-      console.log("Super");
-    } else {
-      console.log(response);
-      alert("Error");
-    }
-  });
-  */
-  /*
-  fetch("http://localhost:5000/calculate", {
-    method: "POST",
-    body: sendingJSON
-  }).then((response) => response.json()).then((response) => {
-    if (response.status === 200) {
-      console.log("Super");
-    } else {
-      console.log(response);
-      alert("Error");
-    }
-  });
-  */
+    body: sendingJSON,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      const receivedArray = response;
+      for (const receiver of receivedArray.Receiver) {
+        setElements((els) =>
+          els.map((e) => {
+            if (receiver[e.id]) {
+              e.data.outPower = receiver[e.id];
+            }
+            return e;
+          })
+        );
+      }
+    });
 
+  /*
   const receivedJSON =
     '{"Receiver": [{"Receiver_0": "10"}, {"Receiver_1": "0"}]}';
+
   const receivedArray = JSON.parse(receivedJSON);
 
   for (const receiver of receivedArray.Receiver) {
@@ -153,6 +153,7 @@ const calculate = (setElements, elements) => {
       })
     );
   }
+  */
 };
 
 export default function Header({ elements, setElements, resetId }) {

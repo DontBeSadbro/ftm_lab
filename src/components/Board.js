@@ -66,7 +66,7 @@ const getDataForType = (type) => {
         sens: 10,
         wavelength: 1450,
         loss: 1,
-        outPower: undefined,
+        outPower: null,
       };
     case "AddDropMux":
       return { addWL: 1350, delWL: 1550, power: 1000, loss: 1 };
