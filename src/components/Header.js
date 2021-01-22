@@ -91,7 +91,6 @@ const calculate = (setElements, elements) => {
     if (el.source === undefined) el.source = [];
     el.source.push(line.id);
   }
-  console.log(helperArray);
   const sendingObj = {
     AddDropMux: [],
     Amplifier: [],
@@ -110,12 +109,9 @@ const calculate = (setElements, elements) => {
     sendingObj[e.type].push(e);
   }
 
-  //const sendingJSON = '{"id": "Receiver_3","type": "Receiver"}';
   const sendingJSON = JSON.stringify(sendingObj);
 
-  console.log(sendingJSON);
-
-  fetch("http://localhost:8080/calculate2/", {
+  fetch("http://localhost:8080/calculate/", {
     method: "POST",
     body: sendingJSON,
     headers: {
@@ -136,24 +132,6 @@ const calculate = (setElements, elements) => {
         );
       }
     });
-
-  /*
-  const receivedJSON =
-    '{"Receiver": [{"Receiver_0": "10"}, {"Receiver_1": "0"}]}';
-
-  const receivedArray = JSON.parse(receivedJSON);
-
-  for (const receiver of receivedArray.Receiver) {
-    setElements((els) =>
-      els.map((e) => {
-        if (receiver[e.id]) {
-          e.data.outPower = receiver[e.id];
-        }
-        return e;
-      })
-    );
-  }
-  */
 };
 
 export default function Header({ elements, setElements, resetId }) {
